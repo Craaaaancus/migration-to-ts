@@ -1,11 +1,11 @@
 class Loader {
-  constructor(baseLink, options) {
+  constructor(public baseLink:any,public options:any) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp(
-    { endpoint, options = {} },
+    { endpoint, options = {} }:any,
     callback = () => {
       console.error('No callback for GET response');
     }
@@ -13,7 +13,7 @@ class Loader {
     this.load('GET', endpoint, callback, options);
   }
 
-  errorHandler(res) {
+  errorHandler(res:any) {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(
@@ -25,7 +25,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options, endpoint) {
+  makeUrl(options:any, endpoint:any) {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -36,7 +36,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method, endpoint, callback, options = {}) {
+  load(method:any, endpoint:any, callback:any, options = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
