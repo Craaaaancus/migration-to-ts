@@ -1,19 +1,23 @@
+interface IApiKey {
+  apiKey: string;
+}
+
 class Loader {
-  constructor(public baseLink:any,public options:any) {
+  constructor(public readonly baseLink: string, public options: Readonly<IApiKey>) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp(
-    { endpoint, options = {} }:any,
-    callback = () => {
+    { endpoint, options = {} }: any,
+    callback = (): void => {
       console.error('No callback for GET response');
     }
   ) {
     this.load('GET', endpoint, callback, options);
   }
 
-  errorHandler(res:any) {
+  errorHandler(res: Response): Response {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(
@@ -25,23 +29,26 @@ class Loader {
     return res;
   }
 
-  makeUrl(options:any, endpoint:any) {
+  makeUrl(options: any, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
-    Object.keys(urlOptions).forEach((key) => {
+    Object.keys(urlOptions).forEach((key: string): void => {
       url += `${key}=${urlOptions[key]}&`;
     });
 
     return url.slice(0, -1);
   }
 
-  load(method:any, endpoint:any, callback:any, options = {}) {
+  load(method: string, endpoint: any, callback: Function, options = {}) {
+    console.log(endpoint);
+    console.log(callback);
+    console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
-      .then((res) => res.json())
-      .then((data) => callback(data))
-      .catch((err) => console.error(err));
+      .then((res: Response): Promise<string> => res.json())
+      .then((data: string) => callback(data))
+      .catch((err: Error): void => console.error(err));
   }
 }
 
