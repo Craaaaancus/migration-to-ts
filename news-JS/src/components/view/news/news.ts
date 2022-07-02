@@ -4,7 +4,7 @@ class News {
   draw(data: Array<IArticle>) {
     const news =
       data.length >= 10
-        ? data.filter((_item: IArticle, idx: number) => idx < 10)
+        ? data.filter((_item: IArticle, idx: number): boolean => idx < 10)
         : data;
 
     const fragment = document.createDocumentFragment();
@@ -12,7 +12,7 @@ class News {
       '#newsItemTemp'
     ) as HTMLTemplateElement;
 
-    news.forEach((item: IArticle, idx: number) => {
+    news.forEach((item: IArticle, idx: number): void => {
       const newsClone: HTMLElement = newsItemTemp.content.cloneNode(
         true
       ) as HTMLElement;
