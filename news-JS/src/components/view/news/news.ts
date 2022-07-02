@@ -1,21 +1,29 @@
 import './news.css';
 
 class News {
-  draw(data: any) {
+  draw(data: Array<IArticle>) {
     const news =
-      data.length >= 10 ? data.filter((_item:any, idx:any) => idx < 10) : data;
+      data.length >= 10
+        ? data.filter((_item: IArticle, idx: number) => idx < 10)
+        : data;
 
     const fragment = document.createDocumentFragment();
-    const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+    const newsItemTemp: HTMLTemplateElement = document.querySelector(
+      '#newsItemTemp'
+    ) as HTMLTemplateElement;
 
-    news.forEach((item:any, idx:any) => {
-      const newsClone: HTMLElement = newsItemTemp.content.cloneNode(true) as HTMLElement;
+    news.forEach((item: IArticle, idx: number) => {
+      const newsClone: HTMLElement = newsItemTemp.content.cloneNode(
+        true
+      ) as HTMLElement;
 
       if (idx % 2) newsClone.querySelector('.news__item')!.classList.add('alt');
 
-      const newsMetaPhoto: HTMLElement =  newsClone.querySelector('.news__meta-photo') as HTMLElement;
+      const newsMetaPhoto: HTMLElement = newsClone.querySelector(
+        '.news__meta-photo'
+      ) as HTMLElement;
 
-     newsMetaPhoto.style.backgroundImage = `url(${
+      newsMetaPhoto.style.backgroundImage = `url(${
         item.urlToImage || 'img/news_placeholder.jpg'
       })`;
       newsClone.querySelector('.news__meta-author')!.textContent =
