@@ -49,9 +49,9 @@ class Loader {
     callback: (n?: any) => void,
     options = {}
   ) {
-    console.log(endpoint);
-    console.log(callback);
-    console.log(JSON.stringify(options));
+    //console.log(endpoint);
+    //console.log(callback);
+    //console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res: Response): Promise<string> => res.json())
