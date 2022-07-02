@@ -1,15 +1,18 @@
 interface IApiKey {
-  apiKey: string;
+  [apiKey: string]: string;
 }
 
 class Loader {
-  constructor(public readonly baseLink: string, public options: Readonly<IApiKey>) {
+  constructor(
+    public readonly baseLink: string,
+    public options: Readonly<IApiKey>
+  ) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp(
-    { endpoint, options = {} }: any,
+    { endpoint, options = {} }: { endpoint: string, options?:{sources?: string}},
     callback = (): void => {
       console.error('No callback for GET response');
     }
@@ -29,7 +32,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: any, endpoint: string): string {
+  makeUrl(options: {[sources: string]: string}|{}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -40,14 +43,19 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: any, callback: Function, options = {}) {
+  load(
+    method: string,
+    endpoint: string,
+    callback: (n?: any) => void,
+    options = {}
+  ) {
     console.log(endpoint);
     console.log(callback);
     console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res: Response): Promise<string> => res.json())
-      .then((data: string) => callback(data))
+      .then((data: any) => callback(data))
       .catch((err: Error): void => console.error(err));
   }
 }
