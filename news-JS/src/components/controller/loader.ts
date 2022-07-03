@@ -4,10 +4,12 @@ type ApiKey = {
 type Options = {
   [sources: string]: string;
 };
+
 interface IResponce {
   endpoint: string;
   options?: Partial<Options>;
 }
+
 enum Status {
   Unauthorized = 401,
   NotFound = 404,
@@ -15,8 +17,8 @@ enum Status {
 
 class Loader {
   constructor(
-    protected readonly baseLink: string,
-    protected options: Readonly<ApiKey>
+    public readonly baseLink: string,
+    public options: Readonly<ApiKey>
   ) {
     this.baseLink = baseLink;
     this.options = options;
@@ -24,7 +26,7 @@ class Loader {
 
   getResp<T>(
     { endpoint, options }: Readonly<IResponce>,
-    callback = (_data: T): void => {
+    callback: (data: T) => void = (_data: T): void => {
       console.error('No callback for GET response');
     }
   ) {

@@ -2,12 +2,12 @@ import './news.css';
 
 class News {
   draw(data: Array<IArticle>) {
-    const news =
+    const news: Array<IArticle> =
       data.length >= 10
         ? data.filter((_item: IArticle, idx: number): boolean => idx < 10)
         : data;
 
-    const fragment = document.createDocumentFragment();
+    const fragment: DocumentFragment = document.createDocumentFragment();
     const newsItemTemp: HTMLTemplateElement = document.querySelector(
       '#newsItemTemp'
     ) as HTMLTemplateElement;

@@ -2,8 +2,8 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App {
-  public controller: AppController;
-  public view: AppView;
+  private controller: AppController;
+  private view: AppView;
   constructor() {
     this.controller = new AppController();
     this.view = new AppView();
@@ -13,7 +13,7 @@ class App {
     document
       .querySelector('.sources')!
       .addEventListener('click', (e: Event) =>
-        this.controller.getNews(e, (data: INews): void =>
+        this.controller.getNews(e, (data: IDataNews): void =>
           this.view.drawNews(data)
         )
       );
