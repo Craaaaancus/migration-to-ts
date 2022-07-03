@@ -13,7 +13,7 @@ class Loader {
 
   getResp<T>(
     { endpoint, options }: { endpoint: string; options?: { sources?: string } },
-    callback = (data?: T): void => {
+    callback = (_data: T): void => {
       console.error('No callback for GET response');
     }
   ) {
@@ -57,9 +57,9 @@ class Loader {
     //console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
-      .then((res: Response) => res.json())
-      .then((data: U) => callback(data))
-      .catch((err: Error) => console.error(err));
+      .then((res: Response): Promise<U> => res.json())
+      .then((data: U): void => callback(data))
+      .catch((err: Error): void => console.error(err));
   }
 }
 
