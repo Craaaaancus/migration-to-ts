@@ -1,18 +1,29 @@
-interface IApiKey {
+type ApiKey = {
   [apiKey: string]: string;
+};
+type Options = {
+  [sources: string]: string;
+};
+interface IResponce {
+  endpoint: string;
+  options?: Partial<Options>;
+}
+enum Status {
+  Unauthorized = 401,
+  NotFound = 404,
 }
 
 class Loader {
   constructor(
-    public readonly baseLink: string,
-    public options: Readonly<IApiKey>
+    protected readonly baseLink: string,
+    protected options: Readonly<ApiKey>
   ) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp<T>(
-    { endpoint, options }: { endpoint: string; options?: { sources?: string } },
+    { endpoint, options }: Readonly<IResponce>,
     callback = (_data: T): void => {
       console.error('No callback for GET response');
     }
@@ -22,7 +33,7 @@ class Loader {
 
   errorHandler(res: Response): Response {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404)
+      if (res.status === Status.Unauthorized || res.status === Status.NotFound)
         console.log(
           `Sorry, but there is ${res.status} error: ${res.statusText}`
         );
@@ -32,10 +43,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(
-    options: { [sources: string]: string } | {},
-    endpoint: string
-  ): string {
+  makeUrl(options: Partial<Options> = {}, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -50,11 +58,11 @@ class Loader {
     method: string,
     endpoint: string,
     callback: (data: U) => void,
-    options = {}
+    options: Partial<Options> = {}
   ) {
-    //console.log(endpoint);
-    //console.log(callback);
-    //console.log(JSON.stringify(options));
+    console.log(endpoint);
+    console.log(callback);
+    console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res: Response): Promise<U> => res.json())
