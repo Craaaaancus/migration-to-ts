@@ -1,5 +1,5 @@
 interface IDataNews {
-  status: string;
+  status: 'ok' | 'error';
   totalResults: number;
   articles: Array<IDataArticle>;
 }

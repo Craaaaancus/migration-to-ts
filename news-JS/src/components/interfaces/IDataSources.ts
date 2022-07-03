@@ -1,4 +1,4 @@
 interface IDataSources {
-  status: string;
+  status: 'ok' | 'error';
   sources: Array<IDataSource>;
 }

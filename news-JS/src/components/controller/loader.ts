@@ -4,36 +4,40 @@ type ApiKey = {
 type Options = {
   [sources: string]: string;
 };
-
-interface IResponce {
-  endpoint: string;
+type Endpoints = 'sources' | 'everything';
+type Responce = {
+  endpoint: Endpoints;
   options?: Partial<Options>;
-}
+};
 
 enum Status {
   Unauthorized = 401,
   NotFound = 404,
 }
+enum ApiMethods {
+  GET = 'GET',
+  POST = 'POST',
+}
 
 class Loader {
   constructor(
     public readonly baseLink: string,
-    public options: Readonly<ApiKey>
+    public readonly options: Readonly<ApiKey>
   ) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
-  getResp<T>(
-    { endpoint, options }: Readonly<IResponce>,
+  protected getResp<T>(
+    { endpoint, options }: Readonly<Responce>,
     callback: (data: T) => void = (_data: T): void => {
       console.error('No callback for GET response');
     }
   ) {
-    this.load('GET', endpoint, callback, options);
+    this.load(ApiMethods.GET, endpoint, callback, options);
   }
 
-  errorHandler(res: Response): Response {
+  private errorHandler(res: Response): Response {
     if (!res.ok) {
       if (res.status === Status.Unauthorized || res.status === Status.NotFound)
         console.log(
@@ -45,7 +49,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: Partial<Options> = {}, endpoint: string): string {
+  private makeUrl(options: Partial<Options> = {}, endpoint: Endpoints): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -56,9 +60,9 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load<U>(
-    method: string,
-    endpoint: string,
+  protected load<U>(
+    method: ApiMethods.GET | ApiMethods.POST,
+    endpoint: Endpoints,
     callback: (data: U) => void,
     options: Partial<Options> = {}
   ) {
