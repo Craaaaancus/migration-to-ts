@@ -1,3 +1,5 @@
+import IDataSource from './IDataSource';
+
 interface IDataArticle {
   author: string;
   title: string;
@@ -8,3 +10,5 @@ interface IDataArticle {
   publishedAt: string;
   content: string;
 }
+
+export default IDataArticle;

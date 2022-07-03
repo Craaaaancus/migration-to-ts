@@ -1,7 +1,11 @@
 import News from './news/news';
 import Sources from './sources/sources';
+import IDataArticle from '../interfaces/IDataArticle';
+import IDataNews from '../interfaces/IDataNews';
+import IDataSource from '../interfaces/IDataSource';
+import IDataSources from '../interfaces/IDataSources';
 
-export class AppView {
+class AppView {
   private news: News;
   private sources: Sources;
   constructor() {

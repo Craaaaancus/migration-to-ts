@@ -1,4 +1,5 @@
 import './news.css';
+import IDataArticle from '../../interfaces/IDataArticle';
 
 class News {
   draw(data: Array<IDataArticle>) {

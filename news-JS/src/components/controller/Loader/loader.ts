@@ -1,23 +1,9 @@
-type ApiKey = {
-  [apiKey: string]: string;
-};
-type Options = {
-  [sources: string]: string;
-};
-type Endpoints = 'sources' | 'everything';
-type Responce = {
-  endpoint: Endpoints;
-  options?: Partial<Options>;
-};
-
-enum Status {
-  Unauthorized = 401,
-  NotFound = 404,
-}
-enum ApiMethods {
-  GET = 'GET',
-  POST = 'POST',
-}
+import ApiKey from './types/ApiKey';
+import Options from './types/Options';
+import Endpoints from './types/Endpoints';
+import Responce from './types/Responce';
+import Status from './enums/Status';
+import ApiMethods from './enums/ApiMethods';
 
 class Loader {
   constructor(
@@ -66,9 +52,6 @@ class Loader {
     callback: (data: U) => void,
     options: Partial<Options> = {}
   ) {
-    console.log(endpoint);
-    console.log(callback);
-    console.log(JSON.stringify(options));
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res: Response): Promise<U> => res.json())

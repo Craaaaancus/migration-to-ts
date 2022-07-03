@@ -1,4 +1,5 @@
 import './sources.css';
+import IDataSource from '../../interfaces/IDataSource';
 
 class Sources {
   draw(data: Array<IDataSource>) {

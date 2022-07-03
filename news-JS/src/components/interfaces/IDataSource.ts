@@ -6,3 +6,5 @@ interface IDataSource {
   name: string;
   url: string;
 }
+
+export default IDataSource;

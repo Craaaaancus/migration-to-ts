@@ -1,5 +1,7 @@
 import AppController from '../controller/controller';
-import { AppView } from '../view/appView';
+import AppView from '../view/appView';
+import IDataNews from '../interfaces/IDataNews';
+import IDataSources from '../interfaces/IDataSources';
 
 class App {
   private controller: AppController;
