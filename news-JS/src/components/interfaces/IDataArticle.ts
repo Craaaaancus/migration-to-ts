@@ -1,7 +1,7 @@
-interface IArticle {
+interface IDataArticle {
   author: string;
   title: string;
-  source: Pick<ISource, 'id' | 'name'>;
+  source: Pick<IDataSource, 'id' | 'name'>;
   description: string;
   url: string;
   urlToImage: string;

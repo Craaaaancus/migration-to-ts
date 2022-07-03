@@ -1,4 +1,4 @@
-interface ISource {
+interface IDataSource {
   category: string;
   country: string;
   description: string;

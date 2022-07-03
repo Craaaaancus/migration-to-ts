@@ -1,10 +1,10 @@
 import './news.css';
 
 class News {
-  draw(data: Array<IArticle>) {
-    const news: Array<IArticle> =
+  draw(data: Array<IDataArticle>) {
+    const news: Array<IDataArticle> =
       data.length >= 10
-        ? data.filter((_item: IArticle, idx: number): boolean => idx < 10)
+        ? data.filter((_item: IDataArticle, idx: number): boolean => idx < 10)
         : data;
 
     const fragment: DocumentFragment = document.createDocumentFragment();
@@ -12,7 +12,7 @@ class News {
       '#newsItemTemp'
     ) as HTMLTemplateElement;
 
-    news.forEach((item: IArticle, idx: number): void => {
+    news.forEach((item: IDataArticle, idx: number): void => {
       const newsClone: HTMLElement = newsItemTemp.content.cloneNode(
         true
       ) as HTMLElement;
