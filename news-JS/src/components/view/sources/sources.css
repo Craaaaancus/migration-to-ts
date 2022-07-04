@@ -55,3 +55,20 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media screen and (max-width: 767px) {
+  main {
+    flex-direction: column-reverse;
+  }
+
+  .sources {
+    width: 100%;
+    margin-bottom: 5vh;
+    position: static;
+    height: 25vh;
+  }
+  .source__list {
+    grid-template-columns: 1fr;
+    font-size: 3vw;
+  }
+}

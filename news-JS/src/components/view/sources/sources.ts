@@ -21,7 +21,7 @@ class Sources {
       fragment.append(sourceClone);
     });
 
-    document.querySelector('.source__list')!.append(fragment);
+    document.querySelector('.sources .source__list')!.append(fragment);
   }
 }
 

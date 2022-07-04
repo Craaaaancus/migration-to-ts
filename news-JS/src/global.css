@@ -13,9 +13,16 @@ h1 {
   margin: 0;
 }
 
+.locked {
+  overflow: hidden;
+}
+
 header {
   padding: 1vw 3vw;
   height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
@@ -23,10 +30,13 @@ header h1 {
   font-weight: 800;
 }
 
+header .menu {
+  display: none;
+}
+
 main {
   margin: 2vw;
   display: flex;
-
 }
 
 footer {
@@ -113,6 +123,95 @@ footer .copyright:before {
 
   header h1 {
     font-size: 5vw;
+  }
+
+  #burger {
+    display: none;
+    width: 3vw;
+    height: 3vh;
+    position: relative;
+  }
+
+  #burger span {
+    background-color: #70d6ff;
+    position: absolute;
+    width: 4vw;
+    height: 0.25vh;
+    left: 0;
+    top: 1vh;
+  }
+
+  #burger::after, #burger::before{
+    content: '';
+    background-color: #70d6ff;
+    position: absolute;
+    width: 4vw;
+    height: 0.25vh;
+    left: 0;
+  }
+
+  #burger::before{
+    top: -0.1vh;
+  }
+
+  #burger::after{
+    bottom: 0.5vh;
+  }
+
+  .burger-open {
+    transform: rotate(90deg);
+  }
+
+  .menu {
+    display: block;
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    right: -110%;
+    width: 35vw;
+    height: 100%;
+    background: #292929;
+    transition: right 0.4s ease-in 0s;
+    overflow: auto;
+  }
+
+  .menu__side {
+    z-index: 1;
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: calc(100% - 35vw);
+    height: 100%;
+    background: rgba(41, 41, 41, 0.6);
+    transition: left .4s ease-in 0s;
+  }
+
+  .menu__list {
+    z-index: 90;
+  }
+
+  .menu__link a {
+    line-height: 160%;
+    font-style: normal;
+    font-weight: 400;
+    color: #CDCDCD;
+    cursor: pointer;
+  }
+
+  .menu__link a:hover {
+    color: #FAFAFA;
+  }
+
+  .menu-open {
+    right: 0;
+  }
+
+  .menu__side-open {
+    left: 0;
+  }
+
+  .locked {
+    overflow: hidden;
   }
 
   footer {
