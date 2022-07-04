@@ -5,30 +5,74 @@ body {
 }
 
 header {
-  padding: 10px 30px;
+  padding: 1vw 3vw;
 }
 
 header h1 {
-  font-size: 40px;
+  font-size: 4vw;
   font-weight: 800;
 }
 
+a {
+  text-decoration: none;
+  transition: color .3s;
+}
+
 footer {
-  height: 100px;
+  height: 25vh;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  text-align: center;
+  font-size: 1.8vw;
+  font-weight: 600;
+}
+
+footer .rss {
+  max-width: 20vw;
+  padding: 8%;
+  height: auto;
+  margin: 0 auto;
+  grid-row-start: 1;
+  grid-row-end: span 2;
   display: flex;
+  background: rgb(252, 255, 60);
+  border-radius: 5vw;
+}
+footer .rss img {
+  width: 100%;
+  height: auto;
   align-items: center;
-  justify-content: center;
+}
+footer .github{
+  color: #69db7e
+}
+footer .course {
+  color: #69db7e;
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+}
+footer span.year {
+  color: rgb(255, 252, 76);
+  font-size: 1.2vw;
 }
 footer .copyright {
-  font-size: 14px;
-  color: #333;
-  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(96, 84, 84);
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+footer .github a, footer .course a {
+  color: #30c5ff;
+}
+footer .github a:hover, footer .course a:hover {
+  color: #0c8bbd;
 }
 footer .copyright a {
-  color: #444;
+  color: rgb(134, 122, 122);
 }
 footer .copyright a:hover {
-  color: #555;
+  color: #30c5ff;
 }
 footer .copyright:before {
   content: '©';
