@@ -4,8 +4,18 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+  transition: color .3s;
+}
+
+h1 {
+  margin: 0;
+}
+
 header {
   padding: 1vw 3vw;
+  height: 10vh;
 }
 
 header h1 {
@@ -13,14 +23,16 @@ header h1 {
   font-weight: 800;
 }
 
-a {
-  text-decoration: none;
-  transition: color .3s;
+main {
+  margin: 2vw;
+  display: flex;
+
 }
 
 footer {
   height: 25vh;
-  margin-bottom: 4vw;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
   display: grid;
   grid-template-areas: 
   "rss github copyright"
@@ -95,9 +107,12 @@ footer .copyright:before {
 }
 
 @media screen and (max-width: 767px){
+  header {
+    height: 7vh;
+  }
+
   header h1 {
     font-size: 5vw;
-    margin: 1vw;
   }
 
   footer {
