@@ -94,6 +94,11 @@ footer .copyright:before {
 }
 
 @media screen and (max-width: 767px){
+  header h1 {
+    font-size: 5vw;
+    margin: 1vw;
+  }
+
   footer {
     height: 16vh;
     grid-template-areas: 
