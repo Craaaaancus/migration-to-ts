@@ -35,22 +35,26 @@ class News {
       newsMetaPhoto.style.backgroundImage = `url(${
         item.urlToImage || this.newsPlaceholder
       })`;
-      newsClone.querySelector('.news__meta-author')!.textContent =
-        item.author || item.source.name;
-      newsClone.querySelector(
+      (newsClone.querySelector(
+        '.news__meta-author'
+      ) as HTMLElement).textContent = item.author || item.source.name;
+      (newsClone.querySelector(
         '.news__meta-date'
-      )!.textContent = item.publishedAt
+      ) as HTMLElement).textContent = item.publishedAt
         .slice(0, 10)
         .split('-')
         .reverse()
         .join('-');
 
-      newsClone.querySelector('.news__description-title')!.textContent =
-        item.title;
-      newsClone.querySelector('.news__description-source')!.textContent =
-        item.source.name;
-      newsClone.querySelector('.news__description-content')!.textContent =
-        item.description;
+      (newsClone.querySelector(
+        '.news__description-title'
+      ) as HTMLElement).textContent = item.title;
+      (newsClone.querySelector(
+        '.news__description-source'
+      ) as HTMLElement).textContent = item.source.name;
+      (newsClone.querySelector(
+        '.news__description-content'
+      ) as HTMLElement).textContent = item.description;
       newsClone
         .querySelector('.news__read-more a')
         ?.setAttribute('href', item.url);
@@ -58,7 +62,7 @@ class News {
       fragment.append(newsClone);
     });
 
-    document.querySelector('.news')!.innerHTML = '';
+    (document.querySelector('.news') as HTMLElement).innerHTML = '';
     document.querySelector('.news')?.appendChild(fragment);
   }
 }

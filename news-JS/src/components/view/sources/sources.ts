@@ -13,7 +13,9 @@ class Sources {
         true
       ) as HTMLElement;
 
-      sourceClone.querySelector('.source__item-name')!.textContent = item.name;
+      (sourceClone.querySelector(
+        '.source__item-name'
+      ) as HTMLElement).textContent = item.name;
       sourceClone
         .querySelector('.source__item')
         ?.setAttribute('data-source-id', item.id);
