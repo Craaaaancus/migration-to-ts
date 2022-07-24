@@ -1,8 +1,7 @@
-import IDataSource from './IDataSource';
+import { IDataSource } from './index';
+import { DataStatus } from '../controller';
 
-interface IDataSources {
-  status: 'ok' | 'error';
-  sources: Array<IDataSource>;
+export interface IDataSources {
+  status: DataStatus;
+  sources: IDataSource[];
 }
-
-export default IDataSources;

@@ -1,6 +1,6 @@
-import IDataSource from './IDataSource';
+import { IDataSource } from './index';
 
-interface IDataArticle {
+export interface IDataArticle {
   author: string;
   title: string;
   source: Pick<IDataSource, 'id' | 'name'>;
@@ -10,5 +10,3 @@ interface IDataArticle {
   publishedAt: string;
   content: string;
 }
-
-export default IDataArticle;

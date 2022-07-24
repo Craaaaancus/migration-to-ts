@@ -1,31 +1,30 @@
-import ApiKey from './types/ApiKey';
-import Options from './types/Options';
-import Endpoints from './types/Endpoints';
-import Responce from './types/Responce';
-import Status from './enums/Status';
-import ApiMethods from './enums/ApiMethods';
+import * as loader from './index';
+import { IResponce } from '../interfaces';
 
 class Loader {
   constructor(
     public readonly baseLink: string,
-    public readonly options: Readonly<ApiKey>
+    public readonly options: Readonly<loader.ApiKey>
   ) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   protected getResp<T>(
-    { endpoint, options }: Readonly<Responce>,
+    { endpoint, options }: Readonly<IResponce>,
     callback: (data: T) => void = (_data: T): void => {
       console.error('No callback for GET response');
     }
   ) {
-    this.load(ApiMethods.GET, endpoint, callback, options);
+    this.load(loader.ApiMethods.GET, endpoint, callback, options);
   }
 
   private errorHandler(res: Response): Response {
     if (!res.ok) {
-      if (res.status === Status.Unauthorized || res.status === Status.NotFound)
+      if (
+        res.status === loader.ApiStatus.unauthorized ||
+        res.status === loader.ApiStatus.notFound
+      )
         console.log(
           `Sorry, but there is ${res.status} error: ${res.statusText}`
         );
@@ -35,7 +34,10 @@ class Loader {
     return res;
   }
 
-  private makeUrl(options: Partial<Options> = {}, endpoint: Endpoints): string {
+  private makeUrl(
+    options: Partial<loader.Options> = {},
+    endpoint: loader.Endpoints
+  ): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -47,10 +49,10 @@ class Loader {
   }
 
   protected load<U>(
-    method: ApiMethods.GET | ApiMethods.POST,
-    endpoint: Endpoints,
+    method: loader.ApiMethods,
+    endpoint: loader.Endpoints,
     callback: (data: U) => void,
-    options: Partial<Options> = {}
+    options: Partial<loader.Options> = {}
   ) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)

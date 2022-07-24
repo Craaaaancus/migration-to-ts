@@ -1,9 +1,8 @@
-import IDataArticle from './IDataArticle';
+import { IDataArticle } from './index';
+import { DataStatus } from '../controller';
 
-interface IDataNews {
-  status: 'ok' | 'error';
+export interface IDataNews {
+  status: DataStatus;
   totalResults: number;
-  articles: Array<IDataArticle>;
+  articles: IDataArticle[];
 }
-
-export default IDataNews;

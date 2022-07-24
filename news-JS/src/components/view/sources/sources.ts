@@ -1,5 +1,5 @@
 import './sources.css';
-import IDataSource from '../../interfaces/IDataSource';
+import { IDataSource } from '../index';
 
 class Sources {
   draw(data: Array<IDataSource>) {
@@ -15,13 +15,13 @@ class Sources {
 
       sourceClone.querySelector('.source__item-name')!.textContent = item.name;
       sourceClone
-        .querySelector('.source__item')!
-        .setAttribute('data-source-id', item.id);
+        .querySelector('.source__item')
+        ?.setAttribute('data-source-id', item.id);
 
       fragment.append(sourceClone);
     });
 
-    document.querySelector('.sources .source__list')!.append(fragment);
+    document.querySelector('.sources .source__list')?.append(fragment);
   }
 }
 

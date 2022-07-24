@@ -1,4 +1,4 @@
-interface IDataSource {
+export interface IDataSource {
   category: string;
   country: string;
   description: string;
@@ -6,5 +6,3 @@ interface IDataSource {
   name: string;
   url: string;
 }
-
-export default IDataSource;
