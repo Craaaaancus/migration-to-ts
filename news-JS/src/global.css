@@ -18,7 +18,7 @@ h1 {
 }
 
 header {
-  padding: 1vw 3vw;
+  padding: 10px 30px;
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@ header {
 }
 
 header h1 {
-  font-size: 4vw;
+  font-size: 40px;
   font-weight: 800;
 }
 
@@ -35,21 +35,21 @@ header .menu {
 }
 
 main {
-  margin: 2vw;
+  margin: 20px;
   display: flex;
 }
 
 footer {
   height: 25vh;
-  margin-top: 4vh;
-  margin-bottom: 4vh;
+  margin-top: 5px;
+  margin-bottom: 5px;
   display: grid;
   grid-template-areas: 
   "rss github copyright"
   "rss course copyright";
   grid-template-columns: 1fr 1fr 0.8fr;
   text-align: center;
-  font-size: 1.8vw;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -61,7 +61,7 @@ footer .rss {
   grid-area: rss;
   display: flex;
   background: rgb(252, 255, 60);
-  border-radius: 5vw;
+  border-radius: 50px;
 }
 footer .rss img {
   width: 100%;
@@ -78,10 +78,10 @@ footer .course {
 }
 footer span.year {
   color: rgb(255, 252, 76);
-  font-size: 1.2vw;
+  font-size: 12px;
 }
 footer .copyright {
-  font-size: 1.2vw;
+  font-size: 12px;
   color: rgb(96, 84, 84);
   grid-column: 3;
   grid-area: copyright;
@@ -122,7 +122,7 @@ footer .copyright:before {
   }
 
   header h1 {
-    font-size: 5vw;
+    font-size: 50px;
   }
 
   #burger {
@@ -221,7 +221,7 @@ footer .copyright:before {
     "copyright copyright copyright";
     grid-template-columns: 0.5fr 1fr 1fr;
     grid-template-rows: 8vh 8vh;
-    font-size: 2.4vw;
+    font-size: 24px;
   }
   footer .rss {
     padding: 5%;
