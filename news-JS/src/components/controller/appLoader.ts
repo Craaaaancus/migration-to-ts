@@ -1,4 +1,4 @@
-import Loader from './Loader/loader';
+import Loader from './loader';
 
 class AppLoader extends Loader {
   constructor() {
