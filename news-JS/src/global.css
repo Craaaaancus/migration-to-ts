@@ -1,0 +1,237 @@
+body {
+  color: #fff;
+  background: #17181c;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: color .3s;
+}
+
+h1 {
+  margin: 0;
+}
+
+.locked {
+  overflow: hidden;
+}
+
+header {
+  padding: 10px 30px;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+header .menu {
+  display: none;
+}
+
+main {
+  margin: 20px;
+  display: flex;
+}
+
+footer {
+  height: 25vh;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: grid;
+  grid-template-areas: 
+  "rss github copyright"
+  "rss course copyright";
+  grid-template-columns: 1fr 1fr 0.8fr;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+footer .rss {
+  max-width: 20vw;
+  padding: 8%;
+  height: auto;
+  margin: 0 auto;
+  grid-area: rss;
+  display: flex;
+  background: rgb(252, 255, 60);
+  border-radius: 50px;
+}
+footer .rss img {
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+footer .github{
+  color: #69db7e;
+  grid-area: github;
+}
+footer .course {
+  color: #69db7e;
+  grid-area: course;
+}
+footer span.year {
+  color: rgb(255, 252, 76);
+  font-size: 12px;
+}
+footer .copyright {
+  font-size: 12px;
+  color: rgb(96, 84, 84);
+  grid-column: 3;
+  grid-area: copyright;
+  align-self: center;
+}
+footer .github a, footer .course a {
+  color: #30c5ff;
+}
+footer .github a:hover, footer .course a:hover {
+  color: #0c8bbd;
+}
+footer .copyright a {
+  color: rgb(134, 122, 122);
+}
+footer .copyright a:hover {
+  color: #30c5ff;
+}
+footer .copyright:before {
+  content: '©';
+}
+
+@media screen and (min-width: 768px) and (max-width:1279px) {
+  footer {
+    grid-template-areas: 
+    "rss github"
+    "rss course"
+    "copyright copyright";
+    grid-template-columns: 1fr 1fr;
+  }
+  footer .rss {
+    padding: 5%;
+  }
+}
+
+@media screen and (max-width: 767px){
+  header {
+    height: 7vh;
+  }
+
+  header h1 {
+    font-size: 50px;
+  }
+
+  #burger {
+    display: none;
+    width: 3vw;
+    height: 3vh;
+    position: relative;
+  }
+
+  #burger span {
+    background-color: #70d6ff;
+    position: absolute;
+    width: 4vw;
+    height: 0.25vh;
+    left: 0;
+    top: 1vh;
+  }
+
+  #burger::after, #burger::before{
+    content: '';
+    background-color: #70d6ff;
+    position: absolute;
+    width: 4vw;
+    height: 0.25vh;
+    left: 0;
+  }
+
+  #burger::before{
+    top: -0.1vh;
+  }
+
+  #burger::after{
+    bottom: 0.5vh;
+  }
+
+  .burger-open {
+    transform: rotate(90deg);
+  }
+
+  .menu {
+    display: block;
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    right: -110%;
+    width: 35vw;
+    height: 100%;
+    background: #292929;
+    transition: right 0.4s ease-in 0s;
+    overflow: auto;
+  }
+
+  .menu__side {
+    z-index: 1;
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: calc(100% - 35vw);
+    height: 100%;
+    background: rgba(41, 41, 41, 0.6);
+    transition: left .4s ease-in 0s;
+  }
+
+  .menu__list {
+    z-index: 90;
+  }
+
+  .menu__link a {
+    line-height: 160%;
+    font-style: normal;
+    font-weight: 400;
+    color: #CDCDCD;
+    cursor: pointer;
+  }
+
+  .menu__link a:hover {
+    color: #FAFAFA;
+  }
+
+  .menu-open {
+    right: 0;
+  }
+
+  .menu__side-open {
+    left: 0;
+  }
+
+  .locked {
+    overflow: hidden;
+  }
+
+  footer {
+    height: 16vh;
+    grid-template-areas: 
+    "rss github course"
+    "copyright copyright copyright";
+    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-rows: 8vh 8vh;
+    font-size: 24px;
+  }
+  footer .rss {
+    padding: 5%;
+    max-width: 100%;
+    border-radius: 1vw;
+  }
+  footer .github, footer .course {
+    align-self: center;
+  }
+  footer .copyright, footer span.year  {
+    font-size: 1.6vw;
+  }
+}
